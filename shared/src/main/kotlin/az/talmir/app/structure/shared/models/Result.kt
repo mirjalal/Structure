@@ -6,7 +6,7 @@ package az.talmir.app.structure.shared.models
  *
  * @author mirjalal
  */
-sealed interface Result<Model> where Model : SuccessModel {
+sealed interface Result<out Model> where Model : SuccessModel {
     /**
      * If data fetch call (from api or database) succeeded, the result captured
      * by this class and the will be _stored_ in [data].
@@ -26,6 +26,11 @@ sealed interface Result<Model> where Model : SuccessModel {
      * This type will be mostly used to handle unauthorized remote call results.
      */
     object Unauthorized : Result<Nothing>
+
+    /**
+     * This type will be mostly used to handle unauthorized remote call results.
+     */
+    object NotFound : Result<Nothing>
 
     /**
      * This class is used to handle _any other kind of_ possible error or
