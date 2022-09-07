@@ -16,3 +16,4 @@ rootProject.name = "Structure"
 include ':app'
 include ':core'
 include ':kernel'
+include ':shared'
