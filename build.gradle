@@ -1,7 +1,7 @@
 buildscript {
     ext {
         coroutines_version = '1.6.4'
-        ktor_version = "2.1.0"
+        ktor_version = '2.1.1'
         okhttp_interceptor_version = '4.9.3'
         kotlinx_datetime_version = '0.4.0'
     }
