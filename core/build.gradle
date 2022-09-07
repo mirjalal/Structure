@@ -32,5 +32,20 @@ android {
 dependencies {
     implementation(project(":shared"))
 
+    // coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+
+    // ktor
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-okhttp:$ktor_version")
+    implementation("io.ktor:ktor-client-serialization:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation('org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0')
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_interceptor_version")
+
+    // kotlinx.datetime
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:$kotlinx_datetime_version")
+
     testImplementation 'junit:junit:4.13.2'
 }
