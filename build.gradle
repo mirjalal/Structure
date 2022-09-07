@@ -4,6 +4,7 @@ buildscript {
         ktor_version = '2.1.1'
         okhttp_interceptor_version = '4.9.3'
         kotlinx_datetime_version = '0.4.0'
+        koin_version = '3.2.0'
     }
 }
 
