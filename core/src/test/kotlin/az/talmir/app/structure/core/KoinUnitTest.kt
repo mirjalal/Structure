@@ -1,6 +1,6 @@
 package az.talmir.app.structure.core
 
-import az.talmir.app.structure.core.features.auth.AuthRequestBody
+import az.talmir.app.structure.core.features.auth.sign_in_models.SignInRequestBody
 import az.talmir.app.structure.core.koin.commonModule
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -30,8 +30,8 @@ class KoinUnitTest : KoinTest {
     @Test
     fun `test Json initialized`() {
         val strJson = """{"username":"uname","password":"pwd"}"""
-        val obj = json.decodeFromString<AuthRequestBody>(strJson)
-        assertEquals(AuthRequestBody(username = "uname", password = "pwd"), obj)
+        val obj = json.decodeFromString<SignInRequestBody>(strJson)
+        assertEquals(SignInRequestBody(username = "uname", password = "pwd"), obj)
         assertEquals("true", json.encodeToString(true))
     }
 
