@@ -6,14 +6,14 @@ package az.talmir.app.structure.shared.models
  *
  * @author mirjalal
  */
-sealed interface Result<out Model> where Model : SuccessModel {
+sealed interface Result<out Model> {
     /**
      * If data fetch call (from api or database) succeeded, the result captured
      * by this class and the will be _stored_ in [data].
      *
      * @param data holds the result of successful execution
      */
-    data class Success<T : SuccessModel>(val data: T) : Result<T>
+    data class Success<out T>(val data: T) : Result<T>
 
     /**
      * General failure results will be stored by this type & [FailModel] instance.
