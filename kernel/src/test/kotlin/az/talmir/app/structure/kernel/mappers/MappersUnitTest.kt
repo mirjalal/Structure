@@ -37,34 +37,38 @@ class MappersUnitTest {
             PresentationClass(prop = `in`.prop)
     }
 
-    @Test fun `test L2P mapping is correct`() {
+    @Test
+    fun `test L2P mapping is correct`() {
         val given = LocalClass(prop = 12)
         val expected = PresentationClass(prop = 12)
         assertEquals(expected, L2P.map(given))
     }
 
-    @Test fun `test L2R mapping is correct`() {
+    @Test
+    fun `test L2R mapping is correct`() {
         val given = LocalClass(prop = 34)
         val expected = RemoteClass(prop = 34)
         assertEquals(expected, L2R.map(given))
     }
 
-    @Test fun `test P2L mapping is correct`() {
+    @Test
+    fun `test P2L mapping is correct`() {
         val given = PresentationClass(prop = 56)
         val expected = LocalClass(prop = 56)
         assertEquals(expected, P2L.map(given))
     }
 
-    @Test fun `test P2R mapping is correct`() {
+    @Test
+    fun `test P2R mapping is correct`() {
         val given = PresentationClass(prop = 78)
         val expected = RemoteClass(prop = 78)
         assertEquals(expected, P2R.map(given))
     }
 
-    @Test fun `test R2P mapping is correct`() {
+    @Test
+    fun `test R2P mapping is correct`() {
         val given = RemoteClass(prop = 90)
         val expected = PresentationClass(prop = 90)
         assertEquals(expected, R2P.map(given))
     }
-
 }
