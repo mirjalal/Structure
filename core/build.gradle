@@ -45,8 +45,10 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
-    implementation('org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0')
-    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_interceptor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_serialization_version")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_interceptor_version") {
+        because("look at https://github.com/ktorio/ktor/blob/main/gradle/libs.versions.toml for proper okhttp version")
+    }
 
     // kotlinx.datetime
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:$kotlinx_datetime_version")
@@ -54,7 +56,7 @@ dependencies {
     // koin
     implementation("io.insert-koin:koin-android:$koin_version")
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("junit:junit:$junit_test_version")
 
     //testImplementation("io.ktor:ktor-client-mock:$ktor_version")
 
