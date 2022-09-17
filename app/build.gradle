@@ -4,6 +4,8 @@ plugins {
 }
 
 android {
+    namespace 'az.talmir.app.structure'
+
     compileSdk 33
 
     defaultConfig {
