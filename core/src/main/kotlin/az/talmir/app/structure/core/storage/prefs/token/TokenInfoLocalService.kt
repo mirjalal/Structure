@@ -5,8 +5,8 @@ import kotlinx.serialization.json.Json
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-open class TokenStorage : KoinComponent {
-    internal val encryptedSharedPreferences: EncryptedSharedPreferences by inject()
+open class TokenInfoLocalService : KoinComponent {
+    protected val encryptedSharedPreferences: EncryptedSharedPreferences by inject()
     protected val json: Json by inject()
 
     open suspend fun getTokenInfo(): TokenInfo? =

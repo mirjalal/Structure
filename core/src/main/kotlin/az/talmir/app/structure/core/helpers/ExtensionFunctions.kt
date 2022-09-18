@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 suspend inline fun <reified R> doApiCall(
     dispatcher: CoroutineDispatcher,
     crossinline request: suspend () -> HttpResponse
-): Result< R> =
+): Result<R> =
     withContext(dispatcher) {
         try {
             val apiResponse = request()
