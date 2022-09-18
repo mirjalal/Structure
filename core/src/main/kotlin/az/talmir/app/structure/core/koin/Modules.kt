@@ -1,6 +1,12 @@
 package az.talmir.app.structure.core.koin
 
 import az.talmir.app.structure.core.BuildConfig
+import az.talmir.app.structure.core.features.token.TokenInfoRemoteProvider
+import az.talmir.app.structure.core.features.token.TokenInfoRepository
+import az.talmir.app.structure.core.storage.prefs.language.LangReaderService
+import az.talmir.app.structure.core.storage.prefs.language.LangWriterService
+import az.talmir.app.structure.core.storage.prefs.token.TokenInfoReaderService
+import az.talmir.app.structure.core.storage.prefs.token.TokenInfoWriterService
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -14,6 +20,7 @@ import io.ktor.serialization.kotlinx.json.json
 import java.util.concurrent.TimeUnit
 import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val commonModule = module {
@@ -59,4 +66,12 @@ val commonModule = module {
             }
         }
     }
+
+    singleOf(::LangReaderService)
+    singleOf(::LangWriterService)
+
+    singleOf(::TokenInfoReaderService)
+    singleOf(::TokenInfoWriterService)
+    singleOf(::TokenInfoRemoteProvider)
+    singleOf(::TokenInfoRepository)
 }
