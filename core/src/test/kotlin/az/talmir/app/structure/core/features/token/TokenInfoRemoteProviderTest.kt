@@ -19,7 +19,6 @@ class TokenInfoRemoteProviderTest {
     @Test
     fun `test getNewAccessToken response is not Success`() = runTest {
         val input = TokenInfoRequestBody(refreshToken = "a_refresh_token_1")
-        val given = TokenInfoResponse(accessToken = "dummy_jwt", refreshToken = "dummy_refresh_token")
         val expected = FakeTokenInfoRemoteProvider(testSuiteCase = 4).getNewAccessToken(input) !is Result.Success
         Assert.assertTrue(expected)
     }
