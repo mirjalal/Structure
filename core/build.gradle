@@ -62,8 +62,6 @@ dependencies {
 
     //testImplementation("io.ktor:ktor-client-mock:$ktor_version")
 
-    // Koin testing tools
     testImplementation("io.insert-koin:koin-test:$koin_version")
-    // Needed JUnit version
     testImplementation("io.insert-koin:koin-test-junit4:$koin_version")
 }
