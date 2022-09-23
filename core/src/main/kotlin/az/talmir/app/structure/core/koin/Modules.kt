@@ -73,5 +73,11 @@ val commonModule = module {
     singleOf(::TokenInfoReaderService)
     singleOf(::TokenInfoWriterService)
     singleOf(::TokenInfoRemoteProvider)
-    singleOf(::TokenInfoRepository)
+    single {
+        TokenInfoRepository(
+            tokenInfoLocalReaderService = get<TokenInfoReaderService>(),
+            tokenInfoLocalWriterService = get<TokenInfoWriterService>(),
+            tokenInfoRemoteProvider = get<TokenInfoRemoteProvider>()
+        )
+    }
 }
