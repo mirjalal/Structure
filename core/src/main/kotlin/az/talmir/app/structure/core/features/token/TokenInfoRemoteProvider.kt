@@ -7,8 +7,8 @@ import io.ktor.client.HttpClient
 class TokenInfoRemoteProvider(
     private val httpClient: HttpClient,
     private val apiBridge: ApiBridge
-) {
-    suspend fun getNewAccessToken(refreshRequestBody: TokenInfoRequestBody): Result<TokenInfoResponse> =
+) : ITokenInfoRemoteProvider {
+    override suspend fun getNewAccessToken(refreshRequestBody: TokenInfoRequestBody): Result<TokenInfoResponse> =
         apiBridge.buildApiCall {
             httpClient.getNewAccessToken(refreshRequestBody, it)
         }
