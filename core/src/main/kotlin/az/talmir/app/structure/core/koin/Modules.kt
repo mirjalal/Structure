@@ -49,8 +49,8 @@ val commonModule = module {
             engine {
                 // this: https://api.ktor.io/ktor-client/ktor-client-okhttp/ktor-client-okhttp/io.ktor.client.engine.okhttp/-ok-http-config/index.html
                 config {
-                    callTimeout(15_000, TimeUnit.MILLISECONDS)
-                    connectTimeout(50_000, TimeUnit.MILLISECONDS)
+                    callTimeout(1_000, TimeUnit.MILLISECONDS)
+                    connectTimeout(5_000, TimeUnit.MILLISECONDS)
                     //followRedirects(true)
                 }
 
