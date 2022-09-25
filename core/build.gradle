@@ -39,7 +39,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
 
     // androidx.security
-    implementation("androidx.security:security-crypto:$androidx_security")
+    implementation("androidx.security:security-crypto:$androidx_security_version")
 
     // ktor
     implementation("io.ktor:ktor-client-core:$ktor_version")

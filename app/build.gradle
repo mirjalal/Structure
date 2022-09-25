@@ -34,6 +34,17 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.2.0"
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
     dependenciesInfo {
         includeInApk false
         includeInBundle false
@@ -48,6 +59,33 @@ dependencies {
     implementation("androidx.appcompat:appcompat:$appcompat_version")
     implementation("com.google.android.material:material:$material_version")
 
+    // compose
+    implementation("androidx.compose.ui:ui:$compose_ui_version")
+    implementation("androidx.compose.material3:material3:$compose_material3_version")
+    implementation("androidx.compose.material:material-icons-extended:$compose_material_icons_versin")
+    implementation("androidx.activity:activity-compose:$activity_compose_version")
+
+    // androidx.navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:$androidx_navigation_version")
+    implementation("androidx.navigation:navigation-compose:$androidx_navigation_version")
+
+    // androidx.lifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$androidx_runtime_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_viewmodel_version")
+
+    // coil
+    implementation("io.coil-kt:coil-compose:$coil_version")
+
+    // security
+    implementation("androidx.security:security-crypto:$androidx_security_version")
+
+    // lottie
+    implementation("com.airbnb.android:lottie-compose:$lottie_version")
+
+    // koin
+    implementation("io.insert-koin:koin-androidx-compose:$koin_android_compose_version")
+
+    testImplementation("io.insert-koin:koin-test-junit4:$koin_version")
     testImplementation("junit:junit:$junit_test_version")
     androidTestImplementation("androidx.test.ext:junit:$androidx_junit_test_version")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
