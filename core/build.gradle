@@ -56,12 +56,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:$kotlinx_datetime_version")
 
     // koin
-    implementation("io.insert-koin:koin-android:$koin_version")
+    implementation("io.insert-koin:koin-android:$koin_android_compose_version")
 
     testImplementation("junit:junit:$junit_test_version")
-
-    //testImplementation("io.ktor:ktor-client-mock:$ktor_version")
-
     testImplementation("io.insert-koin:koin-test:$koin_version")
     testImplementation("io.insert-koin:koin-test-junit4:$koin_version")
 
