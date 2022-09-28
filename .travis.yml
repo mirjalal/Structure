@@ -9,35 +9,35 @@ dist: trusty
 os:
   - linux
 
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
-cache:
-  directories:
-    - $HOME/.m2
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
-
-android:
-  licenses:
-    - '.+'
-
-  components:
-    - tools
-    - android-$EMULATOR_API
-    - platform-tools
-    - tools
-    - build-tools-$ANDROID_BUILD_TOOLS
-    - android-$ANDROID_API
-    - extra-android-support
-    - extra-android-m2repository
-    - extra-google-m2repository
-
-before_install:
-  - touch /home/travis/.android/repositories.cfg
-  - yes | sdkmanager "platforms;android-33"
+#before_cache:
+#  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+#  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+#
+#cache:
+#  directories:
+#    - $HOME/.m2
+#    - $HOME/.gradle/caches/
+#    - $HOME/.gradle/wrapper/
+#    - $HOME/.android/build-cache
+#
+#android:
+#  licenses:
+#    - '.+'
+#
+#  components:
+#    - tools
+#    - android-$EMULATOR_API
+#    - platform-tools
+#    - tools
+#    - build-tools-$ANDROID_BUILD_TOOLS
+#    - android-$ANDROID_API
+#    - extra-android-support
+#    - extra-android-m2repository
+#    - extra-google-m2repository
+#
+#before_install:
+#  - touch /home/travis/.android/repositories.cfg
+#  - yes | sdkmanager "platforms;android-33"
 
 script:
   - cd ../../../
