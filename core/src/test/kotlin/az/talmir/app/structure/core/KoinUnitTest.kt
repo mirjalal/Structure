@@ -1,7 +1,7 @@
 package az.talmir.app.structure.core
 
-import az.talmir.app.structure.core.features.auth.sign_in_models.SignInRequestBody
-import az.talmir.app.structure.core.koin.commonModule
+import az.talmir.app.structure.core.features.auth.sign_in_models.SignInRemoteRequestBody
+import az.talmir.app.structure.core.koin.KoinCoreModule
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -13,6 +13,7 @@ import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
+import org.koin.ksp.generated.module
 import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
 import org.koin.test.inject
@@ -24,14 +25,14 @@ class KoinUnitTest : KoinTest {
     @get:Rule
     val koinTestRule = KoinTestRule.create {
         printLogger()
-        modules(commonModule)
+        modules(KoinCoreModule().module)
     }
 
     @Test
     fun `test Json initialized`() {
         val strJson = """{"username":"uname","password":"pwd"}"""
-        val obj = json.decodeFromString<SignInRequestBody>(strJson)
-        assertEquals(SignInRequestBody(username = "uname", password = "pwd"), obj)
+        val obj = json.decodeFromString<SignInRemoteRequestBody>(strJson)
+        assertEquals(SignInRemoteRequestBody(username = "uname", password = "pwd"), obj)
         assertEquals("true", json.encodeToString(true))
     }
 
