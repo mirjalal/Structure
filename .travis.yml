@@ -51,7 +51,7 @@ script:
   - chmod +x ./gradlew
   - ./gradlew kspDebugKotlin
   - ./gradlew kspReleaseKotlin
-#  - ./gradlew check
+  - ./gradlew check
 #  - ./gradlew build
 #  - ./gradlew test
 
