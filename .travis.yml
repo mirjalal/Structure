@@ -49,6 +49,8 @@ script:
   - java -version
   - cd /home/travis/build/mirjalal/Structure
   - chmod +x ./gradlew
+  - ./gradlew kspDebugKotlin
+  - ./gradlew kspReleaseKotlin
   - ./gradlew check
   - ./gradlew build
   - ./gradlew test
