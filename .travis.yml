@@ -42,14 +42,16 @@ android:
     - extra-android-m2repository
     - extra-google-m2repository
 
-#before_install:
-#  - yes | sdkmanager "platforms;android-33"
+before_install:
+  - yes | sdkmanager "platforms;android-33"
 
-script:
+before_script:
   - wget https://github.com/sormuras/bach/blob/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/openjdk11
   - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 -L GPL --target $JAVA_HOME
+
+script:
   - chmod +x ./gradlew
   - ./gradlew check
   - ./gradlew lint
