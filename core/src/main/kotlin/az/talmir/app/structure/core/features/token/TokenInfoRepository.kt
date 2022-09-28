@@ -26,18 +26,16 @@ class TokenInfoRepository(
         if (mTokenInfo.jwtExpireAt > epochMilliseconds)
             return mTokenInfo
         else {
-            if (mTokenInfo.refreshToken != null) {
-                if (mTokenInfo.refreshTokenExpireAt > epochMilliseconds) {
-                    val res = tokenInfoRemoteProvider.getNewAccessToken(
-                        TokenInfoRequestBody(
-                            refreshToken = mTokenInfo.refreshToken!!
-                        )
+            if (mTokenInfo.canClaimNewJwtAt(epochMilliseconds)) {
+                val res = tokenInfoRemoteProvider.getNewAccessToken(
+                    TokenInfoRequestBody(
+                        refreshToken = mTokenInfo.refreshToken!!
                     )
-                    if (res is Result.Success) {
-                        return TokenInfoMapper.map(res.data).also {
-                            tokenInfoLocalWriterService.setToken(it)
-                            mTokenInfo = it
-                        }
+                )
+                if (res is Result.Success) {
+                    return TokenInfoMapper.map(res.data).also {
+                        tokenInfoLocalWriterService.setToken(it)
+                        mTokenInfo = it
                     }
                 }
             }

@@ -13,4 +13,7 @@ data class TokenInfo(
     val jwtExpireAt: Long = System.now().toEpochMilliseconds() + JWT_EXPIRE_MILLIS,
     val refreshToken: String? = null,
     val refreshTokenExpireAt: Long = jwtExpireAt - JWT_EXPIRE_MILLIS + REFRESH_TOKEN_EXPIRE_MILLIS
-) : Local()
+) : Local() {
+    fun canClaimNewJwtAt(millis: Long): Boolean =
+        refreshToken != null && refreshTokenExpireAt > millis
+}
