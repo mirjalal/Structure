@@ -8,8 +8,7 @@ dist: trusty
 os:
   - linux
   
-jdk:
-  - openjdk11
+jdk: openjdk11
 
 #matrix:
 #  include:
@@ -39,7 +38,6 @@ android:
     - platform-tools
     - tools
     - build-tools-$ANDROID_BUILD_TOOLS
-    - android-$ANDROID_API
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
@@ -48,6 +46,10 @@ before_install:
   - yes | sdkmanager "platforms;android-33"
 
 script:
+  - wget https://github.com/sormuras/bach/blob/master/install-jdk.sh
+  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
+  - export JAVA_HOME=$HOME/openjdk11
+  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 -L GPL --target $JAVA_HOME
   - chmod +x ./gradlew
   - ./gradlew check
   - ./gradlew lint
@@ -56,4 +58,3 @@ script:
 
 notifications:
   email: false
-  
