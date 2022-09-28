@@ -86,6 +86,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$androidx_runtime_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_viewmodel_version")
 
+    // splashscreen
+    implementation("androidx.core:core-splashscreen:$splash_screen_version")
+
     // coil
     implementation("io.coil-kt:coil-compose:$coil_version")
 
