@@ -3,8 +3,6 @@ package az.talmir.app.structure.core.koin
 import az.talmir.app.structure.core.BuildConfig
 import az.talmir.app.structure.core.features.token.TokenInfoRemoteProvider
 import az.talmir.app.structure.core.features.token.TokenInfoRepository
-import az.talmir.app.structure.core.storage.prefs.language.LangReaderService
-import az.talmir.app.structure.core.storage.prefs.language.LangWriterService
 import az.talmir.app.structure.core.storage.prefs.token.TokenInfoReaderService
 import az.talmir.app.structure.core.storage.prefs.token.TokenInfoWriterService
 import io.ktor.client.HttpClient
@@ -20,23 +18,27 @@ import io.ktor.serialization.kotlinx.json.json
 import java.util.concurrent.TimeUnit
 import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.core.module.dsl.singleOf
-import org.koin.dsl.module
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
+import org.koin.core.annotation.Single
 
-val commonModule = module {
-    single {
+@Module
+@ComponentScan("az.talmir.app.structure.core")
+class KoinCoreModule {
+    @Single
+    fun provideJson(): Json =
         Json(DefaultJson) {
             encodeDefaults = false
             ignoreUnknownKeys = true
         }
-    }
 
-    single {
+    @Single
+    fun provideHttpClient(json: Json): HttpClient =
         HttpClient(OkHttp) {
             developmentMode = BuildConfig.DEBUG
 
             install(ContentNegotiation) {
-                json(get())
+                json(json)
             }
 
             defaultRequest {
@@ -65,19 +67,16 @@ val commonModule = module {
                 )
             }
         }
-    }
 
-    singleOf(::LangReaderService)
-    singleOf(::LangWriterService)
-
-    singleOf(::TokenInfoReaderService)
-    singleOf(::TokenInfoWriterService)
-    singleOf(::TokenInfoRemoteProvider)
-    single {
+    @Single
+    fun provideTokenInfoRepository(
+        tokenInfoLocalReaderService: TokenInfoReaderService,
+        tokenInfoLocalWriterService: TokenInfoWriterService,
+        tokenInfoRemoteProvider: TokenInfoRemoteProvider
+    ): TokenInfoRepository =
         TokenInfoRepository(
-            tokenInfoLocalReaderService = get<TokenInfoReaderService>(),
-            tokenInfoLocalWriterService = get<TokenInfoWriterService>(),
-            tokenInfoRemoteProvider = get<TokenInfoRemoteProvider>()
+            tokenInfoLocalReaderService = tokenInfoLocalReaderService,
+            tokenInfoLocalWriterService = tokenInfoLocalWriterService,
+            tokenInfoRemoteProvider = tokenInfoRemoteProvider
         )
-    }
 }
