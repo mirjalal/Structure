@@ -42,7 +42,7 @@ script:
   - wget https://gist.githubusercontent.com/mirjalal/c5c9c5f2b728fcbaafef411a08ff1ebe/raw/bf1ec22af9b6b1da4b0da8a08720d44a0ee1e5ea/install_jdk.sh
   - chmod +x $HOME/install-jdk.sh
   - export JAVA_HOME=$HOME/openjdk11
-  - ./$HOME/install_jdk.sh -F 11
+  - .$HOME/install_jdk.sh -F 11
   - chmod +x ./gradlew
   - ./gradlew check
   - ./gradlew build
