@@ -40,21 +40,8 @@ os:
 #  - yes | sdkmanager "platforms;android-33"
 
 script:
-  - cd ../
-  - ls
-  - cd ../
-  - ls
-  - cd ../
-  - ls
-  - cd ../
-  - ls
-  - cd ../
-  - ls
-  - cd /home/travis/mirjalal/Structure
-  - cd /home/travis/virtualenv/mirjalal/Structure
-  - cd /home/travis/gopath/mirjalal/Structure
-  - cd /home/travis/builds/mirjalal/Structure
-  - cd /home/travis/build/mirjalal/Structure
+  - pwd -P
+  - pwd -L
   - mkdir -p $HOME
   - cd $HOME
   - wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
