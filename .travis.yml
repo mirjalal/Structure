@@ -3,7 +3,7 @@
 #    - ANDROID_API=33
 #    - ANDROID_BUILD_TOOLS=32.0.0
 
-language: android
+language: java
 
 dist: trusty
 os:
@@ -35,15 +35,25 @@ android:
 
   components:
     - tools
-    - android-33
     - platform-tools
+    - tools
     - build-tools-32.0.0
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
 
 before_install:
-  - yes | sdkmanager "platforms;android-33"
+  - export ANDROID_HOME=~/android-sdk-linux
+  - wget -q https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O android-sdk-tools.zip
+  - unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}
+  - rm android-sdk-tools.zip
+  - PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+  - mkdir -p ~/.android
+  - touch ~/.android/repositories.cfg
+  - yes | sdkmanager --licenses
+  - yes | sdkmanager "emulator" "tools" "platform-tools" > /dev/null
+  - yes | sdkmanager "platforms;android-33" > /dev/null
+  - yes | sdkmanager "build-tools;32.0.0" > /dev/null
 
 before_script:
   - wget https://github.com/sormuras/bach/blob/master/install-jdk.sh
