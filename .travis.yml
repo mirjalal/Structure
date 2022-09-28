@@ -40,7 +40,7 @@ before_install:
   - yes | sdkmanager "platforms;android-33"
 
 script:
-  - ls
+  - ls && cd .. && ls && cd .. && ls
   - mkdir -p $HOME
   - cd $HOME
   - wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
