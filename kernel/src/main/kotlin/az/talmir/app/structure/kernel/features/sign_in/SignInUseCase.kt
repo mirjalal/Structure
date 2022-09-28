@@ -4,7 +4,11 @@ import az.talmir.app.structure.core.features.auth.AuthRepository
 import az.talmir.app.structure.kernel.helpers.toPresentation
 import az.talmir.app.structure.kernel.helpers.toRemote
 import az.talmir.app.structure.shared.models.Result
+import org.koin.core.annotation.Scope
+import org.koin.core.annotation.Single
 
+@Single
+@Scope(name = "auth_scope")
 class SignInUseCase(
     private val authRepository: AuthRepository
 ) {

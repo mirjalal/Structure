@@ -3,7 +3,9 @@ package az.talmir.app.structure.core.features.token
 import az.talmir.app.structure.core.bridges.ApiBridge
 import az.talmir.app.structure.shared.models.Result
 import io.ktor.client.HttpClient
+import org.koin.core.annotation.Single
 
+@Single
 class TokenInfoRemoteProvider(
     private val httpClient: HttpClient,
     private val apiBridge: ApiBridge
