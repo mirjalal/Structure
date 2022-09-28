@@ -4,4 +4,4 @@ import az.talmir.app.structure.core.helpers.Remote
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SignInRequestBody(val username: String, val password: String) : Remote()
+data class SignInRemoteRequestBody(val username: String, val password: String) : Remote()

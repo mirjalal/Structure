@@ -10,7 +10,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SignInResponse(
+data class SignInRemoteResponse(
     val access_token: String,
     @EncodeDefault(EncodeDefault.Mode.NEVER)
     val refresh_token: String? = null

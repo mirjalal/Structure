@@ -1,4 +1,4 @@
-package az.talmir.app.structure.kernel.features.sign_in
+package az.talmir.app.structure.kernel.features.sign_in.models
 
 import az.talmir.app.structure.kernel.models.presentation.Presentation
 
