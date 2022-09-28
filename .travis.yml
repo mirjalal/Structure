@@ -1,22 +1,13 @@
-#env:
-#  global:
-#    - ANDROID_API=33
-#    - ANDROID_BUILD_TOOLS=32.0.0
+env:
+  global:
+    - ANDROID_API=33
+    - EMULATOR_API=33
+    - ANDROID_BUILD_TOOLS=32.0.0
 
-language: java
-
+language: android
 dist: trusty
 os:
   - linux
-  
-jdk: openjdk11
-
-#matrix:
-#  include:
-#    - jdk: openjdk11
-#      before_install:
-#        - rm "${JAVA_HOME}/lib/security/cacerts"
-#        - ln -s /etc/ssl/certs/java/cacerts "${JAVA_HOME}/lib/security/cacerts"
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -35,36 +26,22 @@ android:
 
   components:
     - tools
+    - android-$EMULATOR_API
     - platform-tools
     - tools
-    - build-tools-32.0.0
+    - build-tools-$ANDROID_BUILD_TOOLS
+    - android-$ANDROID_API
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
+    - sys-img-armeabi-v7a-android-$EMULATOR_API
 
 before_install:
-  - export ANDROID_HOME=~/android-sdk-linux
-  - wget -q https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O android-sdk-tools.zip
-  - unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}
-  - rm android-sdk-tools.zip
-  - PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/cmdline-tools/latest/bin
-  - mkdir -p ~/.android
-  - touch ~/.android/repositories.cfg
-  - yes | sdkmanager --licenses
-  - yes | sdkmanager "emulator" "tools" "platform-tools" > /dev/null
-  - yes | sdkmanager "platforms;android-33" > /dev/null
-  - yes | sdkmanager "build-tools;32.0.0" > /dev/null
-
-before_script:
-  - wget https://github.com/sormuras/bach/blob/master/install-jdk.sh
-  - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
-  - export JAVA_HOME=$HOME/openjdk11
-  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 -L GPL --target $JAVA_HOME
+  - yes | sdkmanager "platforms;android-33"
 
 script:
   - chmod +x ./gradlew
   - ./gradlew check
-  - ./gradlew lint
   - ./gradlew build
   - ./gradlew test
 
