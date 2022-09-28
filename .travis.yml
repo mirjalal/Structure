@@ -9,39 +9,37 @@ dist: trusty
 os:
   - linux
 
-#before_cache:
-#  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-#  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-#
-#cache:
-#  directories:
-#    - $HOME/.m2
-#    - $HOME/.gradle/caches/
-#    - $HOME/.gradle/wrapper/
-#    - $HOME/.android/build-cache
-#
-#android:
-#  licenses:
-#    - '.+'
-#
-#  components:
-#    - tools
-#    - android-$EMULATOR_API
-#    - platform-tools
-#    - tools
-#    - build-tools-$ANDROID_BUILD_TOOLS
-#    - android-$ANDROID_API
-#    - extra-android-support
-#    - extra-android-m2repository
-#    - extra-google-m2repository
-#
-#before_install:
-#  - touch /home/travis/.android/repositories.cfg
-#  - yes | sdkmanager "platforms;android-33"
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+android:
+  licenses:
+    - '.+'
+
+  components:
+    - tools
+    - android-$EMULATOR_API
+    - platform-tools
+    - tools
+    - build-tools-$ANDROID_BUILD_TOOLS
+    - android-$ANDROID_API
+    - extra-android-support
+    - extra-android-m2repository
+    - extra-google-m2repository
+
+before_install:
+  - touch /home/travis/.android/repositories.cfg
+  - yes | sdkmanager "platforms;android-33"
 
 script:
-  - pwd -P
-  - pwd -L
   - mkdir -p $HOME
   - cd $HOME
   - wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
@@ -49,11 +47,11 @@ script:
   - export JAVA_HOME=$HOME/jdk-11.0.2
   - export PATH=$PATH:${JAVA_HOME}/bin
   - java -version
-#  - cd $HOME/mirjalal/Structure
-#  - chmod +x ./gradlew
-#  - ./gradlew check
-#  - ./gradlew build
-#  - ./gradlew test
+  - cd /home/travis/build/mirjalal/Structure
+  - chmod +x ./gradlew
+  - ./gradlew check
+  - ./gradlew build
+  - ./gradlew test
 
 notifications:
   email: false
