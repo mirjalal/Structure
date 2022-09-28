@@ -34,16 +34,15 @@ android:
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
-    - sys-img-armeabi-v7a-android-$EMULATOR_API
 
 before_install:
   - yes | sdkmanager "platforms;android-33"
 
 script:
-  - wget https://github.com/sormuras/bach/blob/master/install-jdk.sh
+  - wget https://gist.githubusercontent.com/mirjalal/c5c9c5f2b728fcbaafef411a08ff1ebe/raw/bf1ec22af9b6b1da4b0da8a08720d44a0ee1e5ea/install_jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/openjdk11
-  - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 -L GPL --target $JAVA_HOME
+  - $TRAVIS_BUILD_DIR/install_jdk.sh -F 11
   - chmod +x ./gradlew
   - ./gradlew check
   - ./gradlew build
