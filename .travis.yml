@@ -43,7 +43,6 @@ script:
   - ./gradlew lint
   - ./gradlew build
   - ./gradlew test
-  - ./gradlew connectedAndroidTest
 
 notifications:
   email: false
