@@ -1,0 +1,50 @@
+env:
+  global:
+    - ANDROID_API=33
+    - ANDROID_BUILD_TOOLS=32.0.0
+
+language: android
+dist: trusty
+os:
+  - linux
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
+
+android:
+  licenses:
+    - '.+'
+
+  components:
+    - tools
+    - android-$ANDROID_API
+    - platform-tools
+    - tools
+    - build-tools-$ANDROID_BUILD_TOOLS
+    - android-$ANDROID_API
+    - extra-android-support
+    - extra-android-m2repository
+    - extra-google-m2repository
+
+before_install:
+  - yes | sdkmanager "platforms;android-29"
+
+script:
+  - chmod +x ./gradlew
+  - ./gradlew check
+  - ./gradlew lint
+  - ./gradlew build
+  - ./gradlew test
+  - ./gradlew connectedAndroidTest
+
+notifications:
+  email: false
+  
