@@ -40,7 +40,11 @@ os:
 #  - yes | sdkmanager "platforms;android-33"
 
 script:
-  - cd ../../../
+  - cd ../
+  - ls
+  - cd ../
+  - ls
+  - cd ../
   - ls
   - cd ../
   - ls
