@@ -40,10 +40,11 @@ before_install:
   - yes | sdkmanager "platforms;android-33"
 
 script:
-  - wget https://gist.githubusercontent.com/mirjalal/c5c9c5f2b728fcbaafef411a08ff1ebe/raw/bf1ec22af9b6b1da4b0da8a08720d44a0ee1e5ea/install_jdk.sh -O /home/travis/install_jdk.sh
-  - chmod +x $HOME/install_jdk.sh
+  - touch /home/travis/install_jdk.sh
+  - wget -O /home/travis/install_jdk.sh https://gist.githubusercontent.com/mirjalal/c5c9c5f2b728fcbaafef411a08ff1ebe/raw/bf1ec22af9b6b1da4b0da8a08720d44a0ee1e5ea/install_jdk.sh
+  - chmod +x /home/travis/install_jdk.sh
   - export JAVA_HOME=$HOME/openjdk11
-  - .$HOME/install_jdk.sh -F 11
+  - ./home/travis/install_jdk.sh -F 11
   - chmod +x ./gradlew
   - ./gradlew check
   - ./gradlew build
