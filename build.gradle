@@ -10,7 +10,7 @@ buildscript {
         material_version = '1.6.1'
         coroutines_version = '1.6.4'
         ktor_version = '2.1.1'
-        okhttp_interceptor_version = '4.9.3'
+        okhttp_interceptor_version = '4.10.0'
         kotlinx_datetime_version = '0.4.0'
         koin_version = '3.2.2'
         koin_android_version = '3.2.2'
