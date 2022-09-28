@@ -12,7 +12,17 @@ import io.ktor.http.HttpHeaders
 suspend fun HttpClient.signIn(
     requestBody: SignInRemoteRequestBody,
     standardParams: ApiCallParams
-) = post(AUTH_ENDPOINT) {
+) = post(SIGN_IN_ENDPOINT) {
+    standardParams.language?.let {
+        header(HttpHeaders.AcceptLanguage, it)
+    }
+    setBody(requestBody)
+}
+
+suspend fun HttpClient.signUp(
+    requestBody: SignUpRemoteRequestBody,
+    standardParams: ApiCallParams
+) = post(SIGN_UP_ENDPOINT) {
     standardParams.language?.let {
         header(HttpHeaders.AcceptLanguage, it)
     }
