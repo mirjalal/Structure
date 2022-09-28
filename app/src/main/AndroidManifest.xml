@@ -27,6 +27,11 @@
                 android:value="true" />
         </service>
 
+        <activity android:name=".screens.RootActivity" android:exported="true" />
+
+        <activity
+            android:name=".screens.auth.AuthActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
