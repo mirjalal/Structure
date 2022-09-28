@@ -24,9 +24,10 @@ class JsonUnitTest : KoinTest {
 
     @Test
     fun `test string parsing to AuthRemoteResponse without refresh_token returns true`() {
-        val strJson = """{"access_token":"blahblah"}"""
+        val jwt = "blahblah"
+        val strJson = """{"access_token":$jwt}"""
         val obj = json.decodeFromString<SignInRemoteResponse>(strJson)
-        assertEquals(SignInRemoteResponse(access_token = "blahblah"), obj)
+        assertEquals(SignInRemoteResponse(access_token = jwt), obj)
     }
 
     @Test
