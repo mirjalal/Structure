@@ -42,8 +42,8 @@ android:
     - extra-android-m2repository
     - extra-google-m2repository
 
-before_install:
-  - yes | sdkmanager "platforms;android-33"
+#before_install:
+#  - yes | sdkmanager "platforms;android-33"
 
 script:
   - wget https://github.com/sormuras/bach/blob/master/install-jdk.sh
