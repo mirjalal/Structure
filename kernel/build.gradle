@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -30,11 +31,27 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+    sourceSets {
+        main.kotlin.srcDirs += 'src/main/kotlin'
+        test.kotlin.srcDirs += 'src/test/kotlin'
+    }
+    // For KSP
+    libraryVariants.configureEach { variant ->
+        kotlin.sourceSets {
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin")
+            }
+        }
+    }
 }
 
 dependencies {
     implementation(project(":core"))
     implementation(project(":shared"))
+
+    implementation("io.insert-koin:koin-android:$koin_version")
+    implementation("io.insert-koin:koin-annotations:$koin_ksp_version")
+    ksp("io.insert-koin:koin-ksp-compiler:$koin_ksp_version")
 
     testImplementation("junit:junit:$junit_test_version")
     testImplementation("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
