@@ -3,8 +3,10 @@ package az.talmir.app.structure.core.helpers
 import az.talmir.app.structure.shared.models.Result
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
+import java.io.IOException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.SerializationException
 
 /**
  * Executes the [request] in [CoroutineDispatcher] to invoke API Endpoint.
@@ -36,7 +38,9 @@ suspend inline fun <reified R> doApiCall(
                     )
                 else -> Result.Error(throwable = Throwable())
             }
-        } catch (cause: Throwable) {
-            Result.Error(throwable = cause)
+        } catch (io: IOException) {
+            Result.Error(io)
+        } catch (se: SerializationException) {
+            Result.Error(se)
         }
     }
