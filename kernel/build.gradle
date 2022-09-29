@@ -31,12 +31,11 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    // For KSP
     sourceSets {
-        main.kotlin.srcDirs += 'src/main/kotlin'
-        test.kotlin.srcDirs += 'src/test/kotlin'
-        main.java.srcDirs += 'build/generated/ksp/main/kotlin'
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
     }
+    // For KSP
     libraryVariants.configureEach { variant ->
         kotlin.sourceSets {
             getByName(name) {
