@@ -50,11 +50,12 @@ android {
         includeInApk false
         includeInBundle false
     }
+    // For KSP
     sourceSets {
         main.kotlin.srcDirs += 'src/main/kotlin'
         test.kotlin.srcDirs += 'src/test/kotlin'
+        main.java.srcDirs += 'build/generated/ksp/main/kotlin'
     }
-    // For KSP
     applicationVariants.configureEach { variant ->
         kotlin.sourceSets {
             getByName(name) {
