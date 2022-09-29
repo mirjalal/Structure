@@ -5,7 +5,7 @@ import az.talmir.app.structure.helpers.KoinViewModelModule
 import az.talmir.app.structure.kernel.helpers.KoinKernelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import org.koin.ksp.generated.module
+import org.koin.ksp.generated.*
 
 class App : Application() {
     override fun onCreate() {
