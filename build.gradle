@@ -25,7 +25,7 @@ buildscript {
         lottie_version = '5.2.0'
 
         koin_ksp_version = '1.0.3'
-        ksp_version = '1.7.10-1.0.6'
+        ksp_version = '1.7.20-1.0.6'
 
         junit_test_version = '4.13.2'
         androidx_junit_test_version = '1.1.3'
