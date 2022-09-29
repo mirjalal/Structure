@@ -49,7 +49,11 @@ script:
   - java -version
   - cd /home/travis/build/mirjalal/Structure
   - chmod +x ./gradlew
-  - ./gradlew kspDebugKotlin kspReleaseKotlin check build test
+  - ./gradlew kspDebugKotlin
+  - ./gradlew kspReleaseKotlin
+  - ./gradlew check --info
+#  - ./gradlew build
+#  - ./gradlew test
 
 notifications:
   email: false
