@@ -49,6 +49,9 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":shared"))
 
+    // kotlinx.datetime
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:$kotlinx_datetime_version")
+
     implementation("io.insert-koin:koin-android:$koin_version")
     implementation("io.insert-koin:koin-annotations:$koin_ksp_version")
     ksp("io.insert-koin:koin-ksp-compiler:$koin_ksp_version")
