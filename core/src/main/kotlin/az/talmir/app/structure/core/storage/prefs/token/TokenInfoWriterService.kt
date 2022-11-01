@@ -7,7 +7,7 @@ import org.koin.core.annotation.Single
 
 @Single
 class TokenInfoWriterService : TokenInfoLocalService() {
-    override suspend fun setToken(data: TokenInfo) {
+    override suspend fun setToken(data: TokenInfoLocalResponse) {
         encryptedSharedPreferences.edit {
             putString(SHARED_PREF_STORAGE_KEY_TOKEN_INFO, json.encodeToString(data))
         }

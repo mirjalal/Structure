@@ -1,18 +1,20 @@
 package az.talmir.app.structure.core.features.token
 
-import az.talmir.app.structure.core.storage.prefs.token.TokenInfo
+import az.talmir.app.structure.core.storage.prefs.token.TokenInfoLocalResponse
 import az.talmir.app.structure.core.storage.prefs.token.TokenInfoLocalService
 import az.talmir.app.structure.shared.models.Result
 import kotlinx.datetime.Clock.System
+import org.koin.core.annotation.Single
 
+@Single
 class TokenInfoRepository(
     private val tokenInfoLocalReaderService: TokenInfoLocalService,
     private val tokenInfoLocalWriterService: TokenInfoLocalService,
     private val tokenInfoRemoteProvider: ITokenInfoRemoteProvider
 ) {
-    private lateinit var mTokenInfo: TokenInfo
+    private lateinit var mTokenInfo: TokenInfoLocalResponse
 
-    suspend fun getJwt(): TokenInfo? {
+    suspend fun getTokenInfo(): TokenInfoResponse? {
         if (!this::mTokenInfo.isInitialized)
             tokenInfoLocalReaderService.getTokenInfo()?.also {
                 mTokenInfo = it
@@ -21,10 +23,10 @@ class TokenInfoRepository(
         return execJwtLogic()
     }
 
-    private suspend fun execJwtLogic(): TokenInfo? {
+    private suspend fun execJwtLogic(): TokenInfoResponse? {
         val epochMilliseconds = System.now().toEpochMilliseconds()
         if (mTokenInfo.jwtExpireAt > epochMilliseconds)
-            return mTokenInfo
+            return TokenInfoLocalResponseMapper.map(mTokenInfo)
         else {
             if (mTokenInfo.canClaimNewJwtAt(epochMilliseconds)) {
                 val res = tokenInfoRemoteProvider.getNewAccessToken(
@@ -33,10 +35,11 @@ class TokenInfoRepository(
                     )
                 )
                 if (res is Result.Success) {
-                    return TokenInfoMapper.map(res.data).also {
+                    TokenInfoMapper.map(res.data).also {
                         tokenInfoLocalWriterService.setToken(it)
                         mTokenInfo = it
                     }
+                    return res.data
                 }
             }
 

@@ -9,9 +9,9 @@ open class TokenInfoLocalService : KoinComponent {
     protected val encryptedSharedPreferences: EncryptedSharedPreferences by inject()
     protected val json: Json by inject()
 
-    open suspend fun getTokenInfo(): TokenInfo? =
+    open suspend fun getTokenInfo(): TokenInfoLocalResponse? =
         throw NotImplementedError("This function must not be called directly")
 
-    open suspend fun setToken(data: TokenInfo): Unit =
+    open suspend fun setToken(data: TokenInfoLocalResponse): Unit =
         throw NotImplementedError("This function must not be called directly")
 }

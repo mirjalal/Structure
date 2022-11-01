@@ -8,7 +8,7 @@ private const val JWT_EXPIRE_MILLIS = 15 * 60 * 1_000L
 private const val REFRESH_TOKEN_EXPIRE_MILLIS = 86_400L * 1_000L
 
 @Serializable
-data class TokenInfo(
+data class TokenInfoLocalResponse(
     val jwt: String,
     val jwtExpireAt: Long = System.now().toEpochMilliseconds() + JWT_EXPIRE_MILLIS,
     val refreshToken: String? = null,
