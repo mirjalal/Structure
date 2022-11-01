@@ -51,8 +51,8 @@ script:
   - chmod +x ./gradlew
   - ./gradlew kspDebugKotlin
   - ./gradlew kspReleaseKotlin
-  - ./gradlew check --info
-#  - ./gradlew build
+ # - ./gradlew check --info
+  - ./gradlew build
 #  - ./gradlew test
 
 notifications:
