@@ -34,9 +34,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".screens.auth.AuthActivity"
-            android:exported="false" />
+        <activity android:name=".screens.auth.AuthActivity" android:exported="false" />
+        <activity android:name=".screens.main.MainActivity" android:exported="false" />
     </application>
 
 </manifest>
