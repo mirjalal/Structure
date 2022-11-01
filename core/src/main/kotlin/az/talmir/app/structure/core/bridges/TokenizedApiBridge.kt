@@ -22,7 +22,7 @@ class TokenizedApiBridge(
         doApiCall(Dispatchers.IO) {
             request(
                 ApiCallParams(
-                    token = tokenInfoRepository.getJwt()?.jwt,
+                    token = tokenInfoRepository.getTokenInfo()?.accessToken,
                     language = langReaderService.getLangCode()
                 )
             )
