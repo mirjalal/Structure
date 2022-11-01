@@ -6,9 +6,9 @@ class FakeTokenInfoLocalService(
     private var testSuiteCase: Int = 0
 ) : TokenInfoLocalService() {
     // we initialize prop here, because we believe that user previously logged in to use token data.
-    private var mTokenInfo: TokenInfo = TokenInfo(jwt = "jwt_string", refreshTokenExpireAt = 0L)
+    private var mTokenInfo: TokenInfoLocalResponse = TokenInfoLocalResponse(jwt = "jwt_string", refreshTokenExpireAt = 0L)
 
-    override suspend fun getTokenInfo(): TokenInfo =
+    override suspend fun getTokenInfo(): TokenInfoLocalResponse =
         when (testSuiteCase) {
             1 -> mTokenInfo.copy(jwtExpireAt = now().toEpochMilliseconds() - 5_000L)
             2 -> mTokenInfo.copy(
@@ -26,7 +26,7 @@ class FakeTokenInfoLocalService(
             else -> mTokenInfo
         }
 
-    override suspend fun setToken(data: TokenInfo) {
+    override suspend fun setToken(data: TokenInfoLocalResponse) {
         mTokenInfo = data
     }
 }

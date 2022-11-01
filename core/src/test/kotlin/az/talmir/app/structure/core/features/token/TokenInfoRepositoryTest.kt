@@ -27,35 +27,35 @@ class TokenInfoRepositoryTest {
     @Test
     fun `test#1 jwt is valid & refresh token is not applicable returns not null`() = runTest {
         setup(0)
-        val jwt = tokenInfoRepository.getJwt()
+        val jwt = tokenInfoRepository.getTokenInfo()
         assertNotNull(jwt)
     }
 
     @Test
     fun `test#2 jwt is invalid & refresh token is not applicable returns null`() = runTest {
         setup(1)
-        val jwt = tokenInfoRepository.getJwt()
+        val jwt = tokenInfoRepository.getTokenInfo()
         assertNull(jwt)
     }
 
     @Test
     fun `test#3 jwt is invalid, but refresh token is valid returns not null`() = runTest {
         setup(2)
-        val jwt = tokenInfoRepository.getJwt()
+        val jwt = tokenInfoRepository.getTokenInfo()
         assertNotNull(jwt)
     }
 
     @Test
     fun `test#4 jwt & refresh token are invalid returns null`() = runTest {
         setup(3)
-        val jwt = tokenInfoRepository.getJwt()
+        val jwt = tokenInfoRepository.getTokenInfo()
         assertNull(jwt)
     }
 
     @Test
     fun `test#5 jwt, refresh token & remote token fetch are invalid returns null`() = runTest {
         setup(4)
-        val jwt = tokenInfoRepository.getJwt()
+        val jwt = tokenInfoRepository.getTokenInfo()
         assertNull(jwt)
     }
 }

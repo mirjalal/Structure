@@ -1,6 +1,7 @@
 package az.talmir.app.structure.core.features.token
 
 import az.talmir.app.structure.shared.models.Result
+import kotlinx.datetime.Clock
 
 class FakeTokenInfoRemoteProvider(
     private val testSuiteCase: Int = 0
@@ -11,7 +12,9 @@ class FakeTokenInfoRemoteProvider(
             else -> Result.Success(
                 TokenInfoResponse(
                     accessToken = "dummy_jwt",
-                    refreshToken = "dummy_refresh_token"
+                    jwtExpireAt = Clock.System.now().toEpochMilliseconds(),
+                    refreshToken = "dummy_refresh_token",
+                    refreshTokenExpireAt = Clock.System.now().toEpochMilliseconds()
                 )
             )
         }

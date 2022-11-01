@@ -3,6 +3,7 @@ package az.talmir.app.structure.core.features.token
 import az.talmir.app.structure.shared.models.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import kotlinx.datetime.Clock
 import org.junit.Assert
 import org.junit.Test
 
@@ -11,7 +12,12 @@ class TokenInfoRemoteProviderTest {
     @Test
     fun `test getNewAccessToken response is Success`() = runTest {
         val input = TokenInfoRequestBody(refreshToken = "a_refresh_token")
-        val given = TokenInfoResponse(accessToken = "dummy_jwt", refreshToken = "dummy_refresh_token")
+        val given = TokenInfoResponse(
+            accessToken = "dummy_jwt",
+            jwtExpireAt = Clock.System.now().toEpochMilliseconds(),
+            refreshToken = "dummy_refresh_token",
+            refreshTokenExpireAt = Clock.System.now().toEpochMilliseconds()
+        )
         val expected = FakeTokenInfoRemoteProvider().getNewAccessToken(input) as Result.Success
         Assert.assertEquals(expected.data, given)
     }
