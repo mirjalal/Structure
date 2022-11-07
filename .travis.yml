@@ -50,8 +50,8 @@ script:
   - cd /home/travis/build/mirjalal/Structure
   - chmod +x ./gradlew
   - ./gradlew check
-#  - ./gradlew build
-#  - ./gradlew test
+  - ./gradlew build
+  - ./gradlew test
 
 notifications:
   email: false
