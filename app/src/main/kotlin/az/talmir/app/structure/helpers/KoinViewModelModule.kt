@@ -1,8 +1,12 @@
 package az.talmir.app.structure.helpers
 
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Module
+import az.talmir.app.structure.screens.auth.AuthViewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-@Module
-@ComponentScan("az.talmir.app.structure")
-class KoinViewModelModule
+val koinViewModelModule = module {
+    scope(qualifier = named("auth_scope_qualifier")) {
+        viewModelOf(::AuthViewModel)
+    }
+}

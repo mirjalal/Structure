@@ -1,8 +1,15 @@
 package az.talmir.app.structure.core.koin
 
 import az.talmir.app.structure.core.BuildConfig
+import az.talmir.app.structure.core.bridges.ApiBridge
+import az.talmir.app.structure.core.bridges.TokenizedApiBridge
+import az.talmir.app.structure.core.features.token.ITokenInfoRemoteProvider
 import az.talmir.app.structure.core.features.token.TokenInfoRemoteProvider
 import az.talmir.app.structure.core.features.token.TokenInfoRepository
+import az.talmir.app.structure.core.storage.prefs.language.LangReaderService
+import az.talmir.app.structure.core.storage.prefs.language.LangStorage
+import az.talmir.app.structure.core.storage.prefs.language.LangWriterService
+import az.talmir.app.structure.core.storage.prefs.token.TokenInfoLocalService
 import az.talmir.app.structure.core.storage.prefs.token.TokenInfoReaderService
 import az.talmir.app.structure.core.storage.prefs.token.TokenInfoWriterService
 import io.ktor.client.HttpClient
@@ -18,27 +25,27 @@ import io.ktor.serialization.kotlinx.json.json
 import java.util.concurrent.TimeUnit
 import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Module
-import org.koin.core.annotation.Single
+import org.koin.core.module.dsl.scopedOf
+import org.koin.core.module.dsl.singleOf
+import org.koin.core.qualifier.named
+import org.koin.core.qualifier.qualifier
+import org.koin.dsl.bind
+import org.koin.dsl.module
 
-@Module
-@ComponentScan("az.talmir.app.structure.core")
-class KoinCoreModule {
-    @Single
-    fun provideJson(): Json =
+val koinCoreModule  = module {
+    single {
         Json(DefaultJson) {
             encodeDefaults = false
             ignoreUnknownKeys = true
         }
+    }
 
-    @Single
-    fun provideHttpClient(json: Json): HttpClient =
+    single {
         HttpClient(OkHttp) {
             developmentMode = BuildConfig.DEBUG
 
             install(ContentNegotiation) {
-                json(json)
+                json(get())
             }
 
             defaultRequest {
@@ -67,16 +74,20 @@ class KoinCoreModule {
                 )
             }
         }
+    }
 
-    @Single
-    fun provideTokenInfoRepository(
-        tokenInfoLocalReaderService: TokenInfoReaderService,
-        tokenInfoLocalWriterService: TokenInfoWriterService,
-        tokenInfoRemoteProvider: TokenInfoRemoteProvider
-    ): TokenInfoRepository =
-        TokenInfoRepository(
-            tokenInfoLocalReaderService = tokenInfoLocalReaderService,
-            tokenInfoLocalWriterService = tokenInfoLocalWriterService,
-            tokenInfoRemoteProvider = tokenInfoRemoteProvider
-        )
+    singleOf(::TokenInfoRepository)
+    singleOf(::TokenInfoReaderService) bind TokenInfoLocalService::class
+    singleOf(::TokenInfoWriterService) bind TokenInfoLocalService::class
+    singleOf(::TokenInfoRemoteProvider) bind ITokenInfoRemoteProvider::class
+
+    singleOf(::LangReaderService) bind LangStorage::class
+    singleOf(::LangWriterService) bind LangStorage::class
+
+    singleOf(::ApiBridge)
+
+    scope(qualifier = named("main_scope_qualifier")) {
+        scopedOf(::TokenizedApiBridge)
+
+    }
 }

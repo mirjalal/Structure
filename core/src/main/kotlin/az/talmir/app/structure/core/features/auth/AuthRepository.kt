@@ -7,11 +7,7 @@ import az.talmir.app.structure.core.features.auth.sign_up_models.SignUpRemoteReq
 import az.talmir.app.structure.core.features.auth.sign_up_models.SignUpRemoteResponse
 import az.talmir.app.structure.shared.models.Result
 import io.ktor.client.HttpClient
-import org.koin.core.annotation.Scope
-import org.koin.core.annotation.Single
 
-@Single
-@Scope(name = "auth_scope")
 class AuthRepository(
     private val httpClient: HttpClient,
     private val apiBridge: ApiBridge

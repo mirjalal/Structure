@@ -7,11 +7,7 @@ import az.talmir.app.structure.core.storage.prefs.language.LangReaderService
 import az.talmir.app.structure.shared.models.Result
 import io.ktor.client.statement.HttpResponse
 import kotlinx.coroutines.Dispatchers
-import org.koin.core.annotation.Scope
-import org.koin.core.annotation.Single
 
-@Single
-@Scope(name = "main_scope")
 class TokenizedApiBridge(
     val tokenInfoRepository: TokenInfoRepository,
     val langReaderService: LangReaderService

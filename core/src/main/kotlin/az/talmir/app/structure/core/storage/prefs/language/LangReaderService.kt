@@ -1,9 +1,7 @@
 package az.talmir.app.structure.core.storage.prefs.language
 
 import az.talmir.app.structure.core.storage.SHARED_PREF_STORAGE_KEY_LANGUAGE
-import org.koin.core.annotation.Single
 
-@Single
 class LangReaderService : LangStorage() {
     private lateinit var langCode: String
 

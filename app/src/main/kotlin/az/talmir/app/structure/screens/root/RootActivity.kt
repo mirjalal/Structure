@@ -9,7 +9,6 @@ import az.talmir.app.structure.screens.auth.AuthActivity
 import az.talmir.app.structure.screens.main.MainActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import org.koin.core.annotation.Scope
 
 class RootActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

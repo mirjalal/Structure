@@ -1,14 +1,13 @@
 package az.talmir.app.structure.core
 
 import az.talmir.app.structure.core.features.auth.sign_in_models.SignInRemoteResponse
-import az.talmir.app.structure.core.koin.KoinCoreModule
+import az.talmir.app.structure.core.koin.koinCoreModule
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.koin.ksp.generated.module
 import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
 import org.koin.test.inject
@@ -19,7 +18,7 @@ class JsonUnitTest : KoinTest {
     @get:Rule
     val koinTestRule = KoinTestRule.create {
         printLogger()
-        modules(KoinCoreModule().module)
+        modules(koinCoreModule)
     }
 
     @Test

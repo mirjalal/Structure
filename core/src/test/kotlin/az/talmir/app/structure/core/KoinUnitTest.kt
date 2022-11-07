@@ -1,7 +1,7 @@
 package az.talmir.app.structure.core
 
 import az.talmir.app.structure.core.features.auth.sign_in_models.SignInRemoteRequestBody
-import az.talmir.app.structure.core.koin.KoinCoreModule
+import az.talmir.app.structure.core.koin.koinCoreModule
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -16,7 +16,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
-import org.koin.ksp.generated.module
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
@@ -27,7 +26,7 @@ class KoinUnitTest : KoinTest {
     @BeforeTest
     fun setup() {
         startKoin {
-            modules(KoinCoreModule().module)
+            modules(koinCoreModule)
         }
     }
 

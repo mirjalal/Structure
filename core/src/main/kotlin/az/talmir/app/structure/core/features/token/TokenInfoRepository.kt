@@ -4,9 +4,7 @@ import az.talmir.app.structure.core.storage.prefs.token.TokenInfoLocalResponse
 import az.talmir.app.structure.core.storage.prefs.token.TokenInfoLocalService
 import az.talmir.app.structure.shared.models.Result
 import kotlinx.datetime.Clock.System
-import org.koin.core.annotation.Single
 
-@Single
 class TokenInfoRepository(
     private val tokenInfoLocalReaderService: TokenInfoLocalService,
     private val tokenInfoLocalWriterService: TokenInfoLocalService,

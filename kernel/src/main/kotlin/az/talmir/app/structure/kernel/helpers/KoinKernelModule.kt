@@ -1,12 +1,23 @@
 package az.talmir.app.structure.kernel.helpers
 
-import az.talmir.app.structure.core.koin.KoinCoreModule
-import org.koin.core.annotation.ComponentScan
-import org.koin.core.annotation.Module
-import org.koin.ksp.generated.module
+import az.talmir.app.structure.kernel.features.sign_in.SignInUseCase
+import az.talmir.app.structure.kernel.features.sign_up.SignUpUseCase
+import az.talmir.app.structure.kernel.features.token.TokenUseCase
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.scopedOf
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-@Module
-@ComponentScan("az.talmir.app.structure.kernel")
-class KoinKernelModule {
-    val coreModule = KoinCoreModule().module
+val koinKernelModule = module {
+    //koinCoreModule
+
+    factoryOf(::TokenUseCase)
+
+    scope(qualifier = named("auth_scope_qualifier")) {
+        scopedOf(::SignUpUseCase)
+        scopedOf(::SignInUseCase)
+    }
+    scope(qualifier = named("main_scope_qualifier")) {
+
+    }
 }
