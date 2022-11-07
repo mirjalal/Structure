@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -54,14 +53,6 @@ android {
         main.kotlin.srcDirs += 'src/main/kotlin'
         test.kotlin.srcDirs += 'src/test/kotlin'
     }
-    // For KSP
-    applicationVariants.configureEach { variant ->
-        kotlin.sourceSets {
-            getByName(name) {
-                kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin")
-            }
-        }
-    }
 }
 
 dependencies {
@@ -100,11 +91,9 @@ dependencies {
 
     // koin
     implementation("io.insert-koin:koin-androidx-compose:$koin_android_compose_version")
-    implementation("io.insert-koin:koin-android:$koin_version")
-    implementation("io.insert-koin:koin-annotations:$koin_ksp_version")
-    ksp("io.insert-koin:koin-ksp-compiler:$koin_ksp_version")
+    implementation("io.insert-koin:koin-android:$koin_android_version")
 
-    testImplementation("io.insert-koin:koin-test-junit4:$koin_version")
+    testImplementation("io.insert-koin:koin-test-junit4:$koin_test_version")
     testImplementation("junit:junit:$junit_test_version")
     androidTestImplementation("androidx.test.ext:junit:$androidx_junit_test_version")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")

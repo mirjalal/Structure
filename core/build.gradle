@@ -2,7 +2,6 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.10'
-    id 'com.google.devtools.ksp'
 }
 
 android {
@@ -35,14 +34,6 @@ android {
         main.kotlin.srcDirs += 'src/main/kotlin'
         test.kotlin.srcDirs += 'src/test/kotlin'
     }
-    // For KSP
-    libraryVariants.configureEach { variant ->
-        kotlin.sourceSets {
-            getByName(name) {
-                kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin")
-            }
-        }
-    }
 }
 
 dependencies {
@@ -69,13 +60,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:$kotlinx_datetime_version")
 
     // koin
-    implementation("io.insert-koin:koin-android:$koin_version")
-    implementation("io.insert-koin:koin-annotations:$koin_ksp_version")
-    ksp("io.insert-koin:koin-ksp-compiler:$koin_ksp_version")
+    implementation("io.insert-koin:koin-android:$koin_android_version")
 
     testImplementation("junit:junit:$junit_test_version")
-    testImplementation("io.insert-koin:koin-test:$koin_version")
-    testImplementation("io.insert-koin:koin-test-junit4:$koin_version")
+    testImplementation("io.insert-koin:koin-test:$koin_test_version")
+    testImplementation("io.insert-koin:koin-test-junit4:$koin_test_version")
 
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version")
 }
