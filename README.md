@@ -1,0 +1,2 @@
+# Structure
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/337b5c76ed6149a8a19ec807386c819b)](https://app.codacy.com/gh/mirjalal/Structure?utm_source=github.com&utm_medium=referral&utm_content=mirjalal/Structure&utm_campaign=Badge_Grade_Settings)
