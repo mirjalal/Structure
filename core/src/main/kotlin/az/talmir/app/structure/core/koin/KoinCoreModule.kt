@@ -1,5 +1,7 @@
 package az.talmir.app.structure.core.koin
 
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import az.talmir.app.structure.core.BuildConfig
 import az.talmir.app.structure.core.bridges.ApiBridge
 import az.talmir.app.structure.core.bridges.TokenizedApiBridge
@@ -28,7 +30,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.dsl.scopedOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.qualifier.named
-import org.koin.core.qualifier.qualifier
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -76,15 +77,31 @@ val koinCoreModule  = module {
         }
     }
 
-    singleOf(::TokenInfoRepository)
+    single {
+        EncryptedSharedPreferences.create(
+            "sh_p_data",
+            MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC),
+            get(),
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
+
+    singleOf(::ApiBridge)
+    singleOf(::LangReaderService) bind LangStorage::class
+    singleOf(::LangWriterService) bind LangStorage::class
+
     singleOf(::TokenInfoReaderService) bind TokenInfoLocalService::class
     singleOf(::TokenInfoWriterService) bind TokenInfoLocalService::class
     singleOf(::TokenInfoRemoteProvider) bind ITokenInfoRemoteProvider::class
 
-    singleOf(::LangReaderService) bind LangStorage::class
-    singleOf(::LangWriterService) bind LangStorage::class
-
-    singleOf(::ApiBridge)
+    single {
+        TokenInfoRepository(
+            TokenInfoReaderService(),
+            TokenInfoWriterService(),
+            TokenInfoRemoteProvider(get(), get())
+        )
+    }
 
     scope(qualifier = named("main_scope_qualifier")) {
         scopedOf(::TokenizedApiBridge)
