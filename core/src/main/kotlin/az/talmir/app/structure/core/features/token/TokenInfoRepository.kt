@@ -13,12 +13,14 @@ class TokenInfoRepository(
     private lateinit var mTokenInfo: TokenInfoLocalResponse
 
     suspend fun getTokenInfo(): TokenInfoResponse? {
-        if (!this::mTokenInfo.isInitialized)
+        if (!this::mTokenInfo.isInitialized) {
             tokenInfoLocalReaderService.getTokenInfo()?.also {
                 mTokenInfo = it
+                return execJwtLogic()
             }
+        }
 
-        return execJwtLogic()
+        return null
     }
 
     private suspend fun execJwtLogic(): TokenInfoResponse? {
