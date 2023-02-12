@@ -14,7 +14,7 @@ buildscript {
         kotlinx_datetime_version = '0.4.0'
         koin_android_version = '3.3.2'
         koin_android_compose_version = '3.4.1'
-        koin_test_version = '3.3.2'
+        koin_test_version = '3.3.3'
         androidx_security_version = '1.0.0'
         kotlinx_serialization_version = '1.4.1'
         coil_version = '2.2.2'
