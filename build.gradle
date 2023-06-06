@@ -9,7 +9,7 @@ buildscript {
         appcompat_version = '1.6.0-rc01'
         material_version = '1.7.0'
         coroutines_version = '1.7.1'
-        ktor_version = '2.3.0'
+        ktor_version = '2.3.1'
         okhttp_interceptor_version = '4.11.0'
         kotlinx_datetime_version = '0.4.0'
         koin_android_version = '3.4.0'
