@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlin_version = '1.8.21'
+        kotlin_version = '1.8.22'
         androidx_core_version = '1.9.0'
         androidx_viewmodel_version = '2.5.1'
         androidx_runtime_version = '2.5.1'
