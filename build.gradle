@@ -12,7 +12,7 @@ buildscript {
         ktor_version = '2.3.2'
         okhttp_interceptor_version = '4.11.0'
         kotlinx_datetime_version = '0.4.0'
-        koin_android_version = '3.4.2'
+        koin_android_version = '3.4.3'
         koin_android_compose_version = '3.4.5'
         koin_test_version = '3.4.1'
         androidx_security_version = '1.0.0'
