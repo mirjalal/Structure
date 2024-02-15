@@ -7,7 +7,7 @@ buildscript {
         androidx_navigation_version = '2.5.3'
         splash_screen_version = '1.0.0'
         appcompat_version = '1.6.0-rc01'
-        material_version = '1.7.0'
+        material_version = '1.11.0'
         coroutines_version = '1.7.3'
         ktor_version = '2.3.8'
         okhttp_interceptor_version = '4.12.0'
