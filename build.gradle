@@ -5,7 +5,7 @@ buildscript {
         androidx_viewmodel_version = '2.7.0'
         androidx_runtime_version = '2.5.1'
         androidx_navigation_version = '2.7.7'
-        splash_screen_version = '1.0.0'
+        splash_screen_version = '1.0.1'
         appcompat_version = '1.7.0-alpha03'
         material_version = '1.11.0'
         coroutines_version = '1.8.0'
