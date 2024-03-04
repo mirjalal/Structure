@@ -22,7 +22,7 @@ buildscript {
         compose_material3_version = '1.0.1'
         compose_material_icons_versin = '1.6.2'
         activity_compose_version = '1.8.2'
-        lottie_version = '6.3.0'
+        lottie_version = '6.4.0'
 
         junit_test_version = '4.13.2'
         androidx_junit_test_version = '1.1.5'
