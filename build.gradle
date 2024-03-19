@@ -18,7 +18,7 @@ buildscript {
         androidx_security_version = '1.0.0'
         kotlinx_serialization_version = '1.6.3'
         coil_version = '2.6.0'
-        compose_ui_version = '1.6.2'
+        compose_ui_version = '1.6.3'
         compose_material3_version = '1.2.1'
         compose_material_icons_versin = '1.6.3'
         activity_compose_version = '1.8.2'
