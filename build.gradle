@@ -20,7 +20,7 @@ buildscript {
         coil_version = '2.6.0'
         compose_ui_version = '1.6.4'
         compose_material3_version = '1.2.1'
-        compose_material_icons_versin = '1.6.4'
+        compose_material_icons_versin = '1.6.5'
         activity_compose_version = '1.8.2'
         lottie_version = '6.4.0'
 
