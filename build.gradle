@@ -1,7 +1,7 @@
 buildscript {
     ext {
         kotlin_version = '1.9.23'
-        androidx_core_version = '1.12.0'
+        androidx_core_version = '1.13.0'
         androidx_viewmodel_version = '2.7.0'
         androidx_runtime_version = '2.7.0'
         androidx_navigation_version = '2.7.7'
