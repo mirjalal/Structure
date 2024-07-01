@@ -25,7 +25,7 @@ buildscript {
         lottie_version = '6.4.1'
 
         junit_test_version = '4.13.2'
-        androidx_junit_test_version = '1.1.5'
+        androidx_junit_test_version = '1.2.1'
         androidx_espresso_core = '3.6.1'
     }
 }
