@@ -21,7 +21,7 @@ buildscript {
         compose_ui_version = '1.6.8'
         compose_material3_version = '1.2.1'
         compose_material_icons_versin = '1.6.8'
-        activity_compose_version = '1.9.0'
+        activity_compose_version = '1.9.1'
         lottie_version = '6.4.1'
 
         junit_test_version = '4.13.2'
